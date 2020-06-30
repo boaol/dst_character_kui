@@ -38,19 +38,15 @@ local function kuijiang_weapon_light()
 end
 
 local function weapon_lighton(inst, owner)
-    if not inst.components.fueled:IsEmpty() then
-        if inst._light == nil or not inst._light:IsValid() then
-            inst._light = SpawnPrefab("kuijiang_weapon_light")
-        end
-        if owner ~= nil then
-            inst._light.entity:SetParent(owner.entity)
-        end
-        inst.components.fueled:StartConsuming()
+    if inst._light == nil or not inst._light:IsValid() then
+        inst._light = SpawnPrefab("kuijiang_weapon_light")
+    end
+    if owner ~= nil then
+        inst._light.entity:SetParent(owner.entity)
     end
 end
 
 local function weapon_lightoff(inst)
-    inst.components.fueled:StopConsuming()
     if inst._light ~= nil then
         if inst._light:IsValid() then
             inst._light:Remove()
@@ -58,29 +54,6 @@ local function weapon_lightoff(inst)
         inst._light = nil
     end
 
-end
-
-local function weapon_perish(inst)
-    local equippable = inst.components.equippable
-    if equippable ~= nil and equippable:IsEquipped() then
-        local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
-        if owner ~= nil then
-            local data = {
-                prefab = inst.prefab,
-                equipslot = equippable.equipslot
-            }
-            weapon_lightoff(inst)
-            owner:PushEvent("torchranout", data)
-            return
-        end
-    end
-    weapon_lightoff(inst)
-end
-
-local function weapon_takefuel(inst)
-    if inst.components.equippable ~= nil and inst.components.equippable:IsEquipped() then
-        weapon_lighton(inst)
-    end
 end
 
 local function onequip(inst, owner)
@@ -213,14 +186,6 @@ local function kuijiang_weapon_a()
     inst:AddComponent("armor")
     inst.components.armor:InitCondition(180, 0.80)
 
-    inst:AddComponent("fueled")
-    inst.components.fueled.fueltype = FUELTYPE.CAVE
-    inst.components.fueled:InitializeFuelLevel(TUNING.MINERHAT_LIGHTTIME)
-    inst.components.fueled:SetDepletedFn(weapon_perish)
-    inst.components.fueled:SetTakeFuelFn(weapon_takefuel)
-    inst.components.fueled:SetFirstPeriod(TUNING.TURNON_FUELED_CONSUMPTION, TUNING.TURNON_FULL_FUELED_CONSUMPTION)
-    inst.components.fueled.accepting = true
-
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(TUNING.kuijiangWeaponDamage)
     inst.components.weapon:SetRange(TUNING.kuijiangWeaponRange, TUNING.kuijiangWeaponRange)
@@ -269,15 +234,7 @@ local function kuijiang_weapon_b()
     -- inst.components.weapon:SetOnAttack(onattack)
 
     inst:AddComponent("armor")
-    inst.components.armor:InitCondition(230, 0.80) -- 耐久
-
-    inst:AddComponent("fueled")
-    inst.components.fueled.fueltype = FUELTYPE.CAVE
-    inst.components.fueled:InitializeFuelLevel(TUNING.MINERHAT_LIGHTTIME)
-    inst.components.fueled:SetDepletedFn(weapon_perish)
-    inst.components.fueled:SetTakeFuelFn(weapon_takefuel)
-    inst.components.fueled:SetFirstPeriod(TUNING.TURNON_FUELED_CONSUMPTION, TUNING.TURNON_FULL_FUELED_CONSUMPTION)
-    inst.components.fueled.accepting = true
+    inst.components.armor:InitCondition(230, 0.80)
 
     inst:AddComponent("tool")
     inst.components.tool:SetAction(ACTIONS.MINE, 2)
@@ -327,15 +284,7 @@ local function kuijiang_weapon_c()
 
     -- inst.components.weapon:SetOnAttack(onattack)
     inst:AddComponent("armor")
-    inst.components.armor:InitCondition(300, 0.80) -- 耐久
-
-    inst:AddComponent("fueled")
-    inst.components.fueled.fueltype = FUELTYPE.CAVE
-    inst.components.fueled:InitializeFuelLevel(TUNING.MINERHAT_LIGHTTIME)
-    inst.components.fueled:SetDepletedFn(weapon_perish)
-    inst.components.fueled:SetTakeFuelFn(weapon_takefuel)
-    inst.components.fueled:SetFirstPeriod(TUNING.TURNON_FUELED_CONSUMPTION, TUNING.TURNON_FULL_FUELED_CONSUMPTION)
-    inst.components.fueled.accepting = true
+    inst.components.armor:InitCondition(300, 0.80)
 
     inst:AddComponent("tool")
     inst.components.tool:SetAction(ACTIONS.MINE, 2)
