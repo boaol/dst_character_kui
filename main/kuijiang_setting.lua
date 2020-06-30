@@ -10,7 +10,7 @@ end
 
 local function Update_hat_parameters_b(inst)
 inst:AddComponent("armor")
-inst.components.armor:InitCondition(500,0.80)
+inst.components.armor:InitCondition(200,0.80)
 end
 
 if hat then
@@ -67,9 +67,9 @@ if not kuijiang_shared then
 local function UpdateShared(inst)
 inst.kuijiang_Allshared = true
 end
-AddPrefabPostInit("kuijiang_hat", UpdateShared)
+-- AddPrefabPostInit("kuijiang_hat", UpdateShared)
 AddPrefabPostInit("kuijiang_armor", UpdateShared)
 AddPrefabPostInit("kuijiang_weapon_a", UpdateShared)
 AddPrefabPostInit("kuijiang_weapon_b", UpdateShared)
-AddPrefabPostInit("kuijiang_weapon_c", UpdateShared)
+-- AddPrefabPostInit("kuijiang_weapon_c", UpdateShared)
 end
