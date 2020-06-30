@@ -27,7 +27,7 @@ local function onequiphat(inst, owner)
                 end
                 local talker = owner.components.talker
                 if talker then
-                    talker:Say("我不能使用它")
+                    talker:Say("I can not use it")
                 end
             end)
         end
