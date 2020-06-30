@@ -12,7 +12,7 @@ local start_inv = {
 -- 当人物复活的时候
 local function onbecamehuman(inst)
 	-- 设置人物的移速（1表示1倍于wilson）
-	inst.components.locomotor:SetExternalSpeedMultiplier(inst, "kuijiang_speed_mod", 1)
+	inst.components.locomotor:SetExternalSpeedMultiplier(inst, "kuijiang_speed_mod", 1.2)
 end
 --当人物死亡的时候
 local function onbecameghost(inst)
@@ -50,7 +50,7 @@ local master_postinit = function(inst)
 	inst.components.sanity:SetMax(TUNING.KUIJIANG_HUNGER)
 	
 	-- 伤害系数
-    inst.components.combat.damagemultiplier = 1
+    inst.components.combat.damagemultiplier = 1.1
 	
 	-- 饥饿速度
 	inst.components.hunger.hungerrate = 1 * TUNING.WILSON_HUNGER_RATE
