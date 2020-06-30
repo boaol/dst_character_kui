@@ -183,8 +183,10 @@ local function kuijiang_weapon_a()
         return inst
     end
 
-    inst:AddComponent("armor")
-    inst.components.armor:InitCondition(180, 0.80)
+    inst:AddComponent("finiteuses")
+    inst.components.finiteuses:SetMaxUses(180)
+    inst.components.finiteuses:SetUses(180)
+    inst.components.finiteuses:SetOnFinished(inst.Remove)
 
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(TUNING.kuijiangWeaponDamage)
@@ -233,8 +235,10 @@ local function kuijiang_weapon_b()
 
     -- inst.components.weapon:SetOnAttack(onattack)
 
-    inst:AddComponent("armor")
-    inst.components.armor:InitCondition(230, 0.80)
+    inst:AddComponent("finiteuses")
+    inst.components.finiteuses:SetMaxUses(230)
+    inst.components.finiteuses:SetUses(230)
+    inst.components.finiteuses:SetOnFinished(inst.Remove)
 
     inst:AddComponent("tool")
     inst.components.tool:SetAction(ACTIONS.MINE, 2)
@@ -283,8 +287,11 @@ local function kuijiang_weapon_c()
     end
 
     -- inst.components.weapon:SetOnAttack(onattack)
-    inst:AddComponent("armor")
-    inst.components.armor:InitCondition(300, 0.80)
+
+    inst:AddComponent("finiteuses")
+    inst.components.finiteuses:SetMaxUses(300)
+    inst.components.finiteuses:SetUses(300)
+    inst.components.finiteuses:SetOnFinished(inst.Remove)
 
     inst:AddComponent("tool")
     inst.components.tool:SetAction(ACTIONS.MINE, 2)
