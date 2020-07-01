@@ -102,7 +102,12 @@ local function fn()
 
     inst:AddComponent("armor")
     inst.components.armor:InitIndestructible(0.2)
-    inst:AddTag("hide_percentage")
+
+    if TUNING.kuijiangBackpackArmor > 0 then
+        inst:AddComponent("armor")
+        inst.components.armor:InitIndestructible(TUNING.kuijiangBackpackArmor)
+        inst:AddTag("hide_percentage")
+    end
 
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BACK or EQUIPSLOTS.BODY

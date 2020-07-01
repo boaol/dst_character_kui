@@ -109,7 +109,7 @@ configuration_options = {
         option(2, 2),
         option(5, 5)
     }, 1.2),
-    AddConfig("Hat_armor", "帽子护甲", "设置你的帽子护甲，默认20%", {
+    AddConfig("Backpack_armor", "背包护甲", "设置你的背包护甲，默认20%", {
         option('0%', 0),
         option('20%', 0.2),
         option('40%', 0.4),

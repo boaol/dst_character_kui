@@ -93,7 +93,9 @@ local function onequiphat(inst, owner)
                 owner.AnimState:Hide("HEAD")
                 owner.AnimState:Show("HEAD_HAT")
             end
-            hat_lighton(inst, owner)
+            if not inst.components.fueled:IsEmpty() then
+                hat_lighton(inst, owner)
+            end
         else
             owner:DoTaskInTime(0, function()
                 local inventory = owner.components.inventory
@@ -117,7 +119,9 @@ local function onequiphat(inst, owner)
             owner.AnimState:Hide("HEAD")
             owner.AnimState:Show("HEAD_HAT")
         end
-        hat_lighton(inst, owner)
+        if not inst.components.fueled:IsEmpty() then
+            hat_lighton(inst, owner)
+        end
     end
 end
 
@@ -162,16 +166,11 @@ local function fn(Sim)
 
     inst:AddComponent("fueled")
     inst.components.fueled.fueltype = FUELTYPE.CAVE
-    inst.components.fueled:InitializeFuelLevel(TUNING.MINERHAT_LIGHTTIME)
+    inst.components.fueled:InitializeFuelLevel(TUNING.MINERHAT_LIGHTTIME*5)
     inst.components.fueled:SetDepletedFn(hat_perish)
     inst.components.fueled:SetTakeFuelFn(hat_takefuel)
     inst.components.fueled:SetFirstPeriod(TUNING.TURNON_FUELED_CONSUMPTION, TUNING.TURNON_FULL_FUELED_CONSUMPTION)
     inst.components.fueled.accepting = true
-
-    if TUNING.kuijiangHatArmor > 0 then
-        inst:AddComponent("armor")
-        inst.components.armor:InitIndestructible(TUNING.kuijiangHatArmor)
-    end
 
     inst:AddComponent("inspectable")
     inst:AddComponent("waterproofer")

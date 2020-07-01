@@ -1,7 +1,7 @@
 TUNING.kuijiangWeaponDamage = GetModConfigData("Weapon_Damage")
 TUNING.kuijiangWeaponRange = GetModConfigData("Weapon_Range")
 TUNING.kuijiangWeaponSpeed = GetModConfigData("Weapon_speed")
-TUNING.kuijiangHatArmor = GetModConfigData("Hat_armor")
+TUNING.kuijiangBackpackArmor = GetModConfigData("Backpack_armor")
 
 local kuijiang_hammer = GetModConfigData("Weapon_hammer")
 if kuijiang_hammer then

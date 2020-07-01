@@ -103,7 +103,7 @@ configuration_options = {
         option(2, 2),
         option(5, 5)
     }, 1.2),
-    AddConfig("Hat_armor", "Hat armor", "Set your hat armor to 20% by default", {
+    AddConfig("Backpack_armor", "Backpack armor", "Set your backpack armor to 20% by default", {
         option('0%', 0),
         option('20%', 0.2),
         option('40%', 0.4),
