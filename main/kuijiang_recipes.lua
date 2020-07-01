@@ -25,8 +25,7 @@ AddRecipe("kuijiang_armor", {
           "kuijiang_armor.tex")
 AddRecipe("kuijiang_weapon_a", {
     Ingredient("rocks", 10),
-    Ingredient("goldnugget", 3),
-    Ingredient("fireflies", 3)
+    Ingredient("goldnugget", 3)
 }, RECIPETABS.kuijiang, TECH.NONE, nil, nil, nil, nil, "kuijiang", "images/inventoryimages/kuijiang_weapon_a.xml",
           "kuijiang_weapon_a.tex")
 AddRecipe("kuijiang_weapon_b", {
