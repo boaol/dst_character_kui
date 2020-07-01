@@ -1,35 +1,7 @@
-local hat = GetModConfigData("Update_hat_parameters")
-
-local function Update_hat_parameters_a(inst)
-    inst:AddComponent("armor")
-    inst.components.armor:InitIndestructible(0.80)
-    -- inst:AddTag("hide_percentage")
-end
-
-local function Update_hat_parameters_b(inst)
-    inst:AddComponent("armor")
-    inst.components.armor:InitCondition(200, 0.80)
-end
-
-if hat then
-    AddPrefabPostInit("kuijiang_hat", Update_hat_parameters_a)
-elseif not hat then
-    AddPrefabPostInit("kuijiang_hat", Update_hat_parameters_b)
-end
-
 TUNING.kuijiangWeaponDamage = GetModConfigData("Weapon_Damage")
 TUNING.kuijiangWeaponRange = GetModConfigData("Weapon_Range")
 TUNING.kuijiangWeaponSpeed = GetModConfigData("Weapon_speed")
-
-local light = GetModConfigData("Weapon_light")
-if light then
-    local function weapon_light(inst)
-        inst.kuijiang_weaponlight = true
-    end
-    AddPrefabPostInit("kuijiang_weapon_a", weapon_light)
-    AddPrefabPostInit("kuijiang_weapon_b", weapon_light)
-    AddPrefabPostInit("kuijiang_weapon_c", weapon_light)
-end
+TUNING.kuijiangHatArmor = GetModConfigData("Hat_armor")
 
 local kuijiang_hammer = GetModConfigData("Weapon_hammer")
 if kuijiang_hammer then

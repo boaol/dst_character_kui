@@ -168,6 +168,11 @@ local function fn(Sim)
     inst.components.fueled:SetFirstPeriod(TUNING.TURNON_FUELED_CONSUMPTION, TUNING.TURNON_FULL_FUELED_CONSUMPTION)
     inst.components.fueled.accepting = true
 
+    if TUNING.kuijiangHatArmor > 0 then
+        inst:AddComponent("armor")
+        inst.components.armor:InitIndestructible(TUNING.kuijiangHatArmor)
+    end
+
     inst:AddComponent("inspectable")
     inst:AddComponent("waterproofer")
 

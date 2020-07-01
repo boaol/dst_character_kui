@@ -56,19 +56,6 @@ local function Breaker(title, hover)
     }
 end
 
-local function SetParameters(...)
-    options = {}
-    for key, value in ipairs({
-        ...
-    }) do
-        options.insert({
-            description = value[1],
-            data = value[2]
-        })
-    end
-    return options
-end
-
 -- Add mod setting
 local function AddConfig(name, label, hover, options, default)
     return {
@@ -94,82 +81,38 @@ local Switch = {
 configuration_options = {
 
     Breaker("weapon_setting"),
-    AddConfig("Weapon_Damage", "Weapon Damage", "Set your weapon damage to 50 by default.", SetParameters(
-                  {
-            20,
-            20
-        }, {
-            50,
-            50
-        }, {
-            70,
-            70
-        }, {
-            100,
-            100
-        }, {
-            150,
-            150
-        }, {
-            200,
-            200
-        }), 50),
-    AddConfig("Weapon_Range", "Weapon Range", "Set your weapon attack range to 2 by default.", SetParameters(
-                  {
-            1,
-            1
-        }, {
-            2,
-            2
-        }, {
-            3,
-            3
-        }, {
-            4,
-            4
-        }, {
-            5,
-            5
-        }, {
-            10,
-            10
-        }), 2),
+    AddConfig("Weapon_Damage", "Weapon Damage", "Set your weapon damage to 50 by default.", {
+        option(20, 20),
+        option(50, 50),
+        option(70, 70),
+        option(100, 100)
+    }, 50),
+    AddConfig("Weapon_Range", "Weapon Range", "Set your weapon attack range to 2 by default.", {
+        option(1, 1),
+        option(2, 2),
+        option(3, 3),
+        option(4, 4),
+        option(5, 5),
+        option(10, 10)
+    }, 2),
     AddConfig("Weapon_speed", "Weapon speed", "Movement coefficient while carrying a weapon, default coefficient 1.2.",
-              SetParameters({
-        1,
-        1
-    }, {
-        1.2,
-        1.2
-    }, {
-        1.5,
-        1.5
-    }, {
-        2,
-        2
-    }), 1.2),
-    AddConfig("Hat_armor", "Hat armor", "Set your hat armor to 20% by default", SetParameters(
-                  {
-            '0%',
-            0
-        }, {
-            '20%',
-            0.2
-        }, {
-            '40%',
-            0.4
-        }, {
-            '60%',
-            0.6
-        }, {
-            '80%',
-            0.8
-        }), 0.2),
-    AddConfig("Weapon_light", "Weapon light", "Can the weapon light up?", Switch, true),
+              {
+        option(1, 1),
+        option(1.2, 1.2),
+        option(1.5, 1.5),
+        option(2, 2),
+        option(5, 5)
+    }, 1.2),
+    AddConfig("Hat_armor", "Hat armor", "Set your hat armor to 20% by default", {
+        option('0%', 0),
+        option('20%', 0.2),
+        option('40%', 0.4),
+        option('60%', 0.6),
+        option('80%', 0.8)
+    }, 0.2),
     Breaker("other_setting"),
-    AddConfig("Update_hat_parameters", "Hat durability", "Are hats infinitely durable?", Switch, true),
-    AddConfig("Weapon_hammer", "hammer", "Can you use it as a hammer?", Switch, false),
-    AddConfig("Weapon_shovel", "shovel", "Can you use it as a shovel?", Switch, false),
+    AddConfig("Weapon_hammer", "hammer", "Can you use it as a hammer?(Not applicable to level-1 weapon)", Switch, false),
+    AddConfig("Weapon_shovel", "shovel", "Can you use it as a shovel?(Not applicable to level-1 weapon)", Switch, false),
     AddConfig("Allsharing", "Equipment sharing", "Sets whether other characters can use the kuemei items.", Switch,
               false)
 }

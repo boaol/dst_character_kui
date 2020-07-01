@@ -5,7 +5,7 @@ name = "[DST]葵酱 Balanced local"
 author = "boaol"
 
 -- MOD Version
-version = "1.07"
+version = "1.08"
 
 -- MOD Description
 description = ""
@@ -56,17 +56,11 @@ local function Breaker(title, hover)
     }
 end
 
-local function SetParameters(...)
-    options = {}
-    for key, value in ipairs({
-        ...
-    }) do
-        options.insert({
-            description = value[1],
-            data = value[2]
-        })
-    end
-    return options
+local function option(description, data)
+    return {
+        description = description,
+        data = data
+    }
 end
 
 -- Add mod setting
@@ -94,81 +88,36 @@ local Switch = {
 configuration_options = {
 
     Breaker("武器设置"),
-    AddConfig("Weapon_Damage", "武器伤害", "设置你的武器伤害，默认50。", SetParameters(
-                  {
-            20,
-            20
-        }, {
-            50,
-            50
-        }, {
-            70,
-            70
-        }, {
-            100,
-            100
-        }, {
-            150,
-            150
-        }, {
-            200,
-            200
-        }), 50),
-    AddConfig("Weapon_Range", "攻击距离", "设置你的武器攻击距离，默认范围2点。", SetParameters(
-                  {
-            1,
-            1
-        }, {
-            2,
-            2
-        }, {
-            3,
-            3
-        }, {
-            4,
-            4
-        }, {
-            5,
-            5
-        }, {
-            10,
-            10
-        }), 2),
-    AddConfig("Weapon_speed", "移动速度", "携带武器时的移动系数，默认系数1.2。", SetParameters(
-                  {
-            1,
-            1
-        }, {
-            1.2,
-            1.2
-        }, {
-            1.5,
-            1.5
-        }, {
-            2,
-            2
-        }), 1.2),
-    AddConfig("Hat_armor", "帽子护甲", "设置你的帽子护甲，默认50%", SetParameters(
-                  {
-            '0%',
-            0
-        }, {
-            '20%',
-            0.2
-        }, {
-            '40%',
-            0.4
-        }, {
-            '60%',
-            0.6
-        }, {
-            '80%',
-            0.8
-        }), 0.2),
-    AddConfig("Weapon_light", "武器发光", "武器是否可以发光？", Switch, true),
+    AddConfig("Weapon_Damage", "武器伤害", "设置你的武器伤害，默认50。", {
+        option(20, 20),
+        option(50, 50),
+        option(70, 70),
+        option(100, 100)
+    }, 50),
+    AddConfig("Weapon_Range", "攻击距离", "设置你的武器攻击距离，默认范围2点。", {
+        option(1, 1),
+        option(2, 2),
+        option(3, 3),
+        option(4, 4),
+        option(5, 5),
+        option(10, 10)
+    }, 2),
+    AddConfig("Weapon_speed", "移动速度", "携带武器时的移动系数，默认系数1.2。", {
+        option(1, 1),
+        option(1.2, 1.2),
+        option(1.5, 1.5),
+        option(2, 2),
+        option(5, 5)
+    }, 1.2),
+    AddConfig("Hat_armor", "帽子护甲", "设置你的帽子护甲，默认20%", {
+        option('0%', 0),
+        option('20%', 0.2),
+        option('40%', 0.4),
+        option('60%', 0.6),
+        option('80%', 0.8)
+    }, 0.2),
     Breaker("其他设置"),
-    AddConfig("Update_hat_parameters", "帽子耐久", "帽子是无限耐久的吗？", Switch, true),
-    AddConfig("Weapon_hammer", "锤子锤子", "可以当成锤子来使用吗？", Switch, false),
-    AddConfig("Weapon_shovel", "铲子铲子", "可以当成铲子来使用吗？", Switch, false),
+    AddConfig("Weapon_hammer", "锤子锤子", "可以当成锤子来使用吗？(不适用于一级武器)", Switch, false),
+    AddConfig("Weapon_shovel", "铲子铲子", "可以当成铲子来使用吗？(不适用于一级武器)", Switch, false),
     AddConfig("Allsharing", "装备共享", "设置其他角色是否能使用葵酱的道具。", Switch, false)
 }

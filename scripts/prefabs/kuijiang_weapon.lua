@@ -12,59 +12,12 @@ local assets = {
     Asset("ATLAS", "images/inventoryimages/kuijiang_weapon_c.xml")
 }
 
-local function kuijiang_weapon_light()
-    local inst = CreateEntity()
-
-    inst.entity:AddTransform()
-    inst.entity:AddLight()
-    inst.entity:AddNetwork()
-
-    inst:AddTag("FX")
-
-    inst.Light:SetIntensity(0.9)
-    inst.Light:SetRadius(5)
-    inst.Light:SetFalloff(1)
-    inst.Light:SetColour(80 / 128, 240 / 255, 180 / 128, 1)
-
-    inst.entity:SetPristine()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    inst.persists = false
-
-    return inst
-end
-
-local function weapon_lighton(inst, owner)
-    if inst._light == nil or not inst._light:IsValid() then
-        inst._light = SpawnPrefab("kuijiang_weapon_light")
-    end
-    if owner ~= nil then
-        inst._light.entity:SetParent(owner.entity)
-    end
-end
-
-local function weapon_lightoff(inst)
-    if inst._light ~= nil then
-        if inst._light:IsValid() then
-            inst._light:Remove()
-        end
-        inst._light = nil
-    end
-
-end
-
 local function onequip(inst, owner)
     if inst.kuijiang_Allshared then
         if owner.prefab == "kuijiang" then
             owner.AnimState:OverrideSymbol("swap_object", "swap_wuqi", "swap_wuqi")
             owner.AnimState:Show("ARM_carry")
             owner.AnimState:Hide("ARM_normal")
-            if inst.kuijiang_weaponlight then
-                weapon_lighton(inst, owner)
-            end
         else
             owner:DoTaskInTime(0, function()
                 local inventory = owner.components.inventory
@@ -81,18 +34,12 @@ local function onequip(inst, owner)
         owner.AnimState:OverrideSymbol("swap_object", "swap_wuqi", "swap_wuqi")
         owner.AnimState:Show("ARM_carry")
         owner.AnimState:Hide("ARM_normal")
-        if inst.kuijiang_weaponlight then
-            weapon_lighton(inst, owner)
-        end
     end
 end
 
 local function onunequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
-    if inst.kuijiang_weaponlight then
-        weapon_lightoff(inst)
-    end
 end
 
 local function SpawnIceFx(inst, target)
@@ -318,4 +265,4 @@ local function kuijiang_weapon_c()
 end
 
 return Prefab("kuijiang_weapon_a", kuijiang_weapon_a, assets), Prefab("kuijiang_weapon_b", kuijiang_weapon_b, assets),
-       Prefab("kuijiang_weapon_c", kuijiang_weapon_c, assets), Prefab("kuijiang_weapon_light", kuijiang_weapon_light)
+       Prefab("kuijiang_weapon_c", kuijiang_weapon_c, assets)

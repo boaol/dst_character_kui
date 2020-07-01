@@ -15,7 +15,7 @@ modimport "main/kuijiang_containers.lua"
 -- Mod Setting
 modimport "main/kuijiang_setting.lua"
 
-GLOBAL.PREFAB_SKINS["kuijiang"] =
+GLOBAL.PREFAB_SKINS["kuijiang"] = {
     "kuijiang_none"
 }
 
@@ -30,7 +30,7 @@ STRINGS.CHARACTERS.kuijiang = require "speech_wendy"
 
 -- The character's name as appears in-game  
 STRINGS.NAMES.kuijiang = "葵酱"
-STRINGS.SKIN_NAMES.kuijiang_none = "葵酱" 
+STRINGS.SKIN_NAMES.kuijiang_none = "葵酱"
 
 AddModCharacter("kuijiang", "FEMALE")
 
