@@ -1,4 +1,4 @@
-# Don't Starve Togather - Kui
+# Don't Starve Together - Kui
 
 ## [DST] Character Kui Balanced
 
