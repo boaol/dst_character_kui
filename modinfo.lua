@@ -1,11 +1,11 @@
 -- MOD Name
-name = "[DST]葵酱 Balanced local"
+name = "[DST]葵酱 Balanced"
 
 -- Mod Authors
 author = "boaol"
 
 -- MOD Version
-version = "1.08"
+version = "1.09"
 
 -- MOD Description
 description = ""
