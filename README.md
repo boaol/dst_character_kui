@@ -4,14 +4,14 @@
 
 ![Image of Kui](https://steamuserimages-a.akamaihd.net/ugc/793137290690792151/CF3EA032D5AFDCBCABA48652A393D22672A55071/)
 
-**I am NOT the original author**
+## I am NOT the original author
 
 all credits go to the original creators
 
 for all I know here it is: https://steamcommunity.com/sharedfiles/filedetails/?id=2033459604
 
-
 ## TODO
+
 * Weapon adjustment based on level
 * Weapon armor
 * Weapon receipts
@@ -21,9 +21,10 @@ for all I know here it is: https://steamcommunity.com/sharedfiles/filedetails/?i
 * Kui's backpack - remove fridge
 
 ## About Bugs
-please provide details: screenshot, log file like 
 
-"C:\Users\User\Documents\Klei\DoNotStarveTogether\client_log.txt" 
+please provide details: screenshot, log file like
+
+"C:\Users\User\Documents\Klei\DoNotStarveTogether\client_log.txt"
 
 and
 

@@ -1,5 +1,5 @@
 -- MOD Name
-name = "[DST]葵酱 Balanced"
+name = "[DST]葵酱 Balanced local"
 
 -- Mod Authors
 author = "boaol"
@@ -56,56 +56,17 @@ local function Breaker(title, hover)
     }
 end
 
--- 封装MOD设置函数
-
-local function Setparameters_a(a, b, c, d, e, f, h, i, j, k, l, m)
-    return {
-        {
-            description = a,
-            data = b
-        },
-        {
-            description = c,
-            data = d
-        },
-        {
-            description = e,
-            data = f
-        },
-        {
-            description = h,
-            data = i
-        },
-        {
-            description = j,
-            data = k
-        },
-        {
-            description = l,
-            data = m
-        }
-    }
-end
-
-local function Setparameters_b(a, b, c, d, e, f, g, h)
-    return {
-        {
-            description = a,
-            data = b
-        },
-        {
-            description = c,
-            data = d
-        },
-        {
-            description = e,
-            data = f
-        },
-        {
-            description = g,
-            data = h
-        }
-    }
+local function SetParameters(...)
+    options = {}
+    for key, value in ipairs({
+        ...
+    }) do
+        options.insert({
+            description = value[1],
+            data = value[2]
+        })
+    end
+    return options
 end
 
 -- Add mod setting
@@ -133,12 +94,77 @@ local Switch = {
 configuration_options = {
 
     Breaker("武器设置"),
-    AddConfig("Weapon_Damage", "武器伤害", "设置你的武器伤害，默认50。",
-              Setparameters_a(20, 20, 50, 50, 70, 70, 100, 100, 150, 150, 200, 200), 50),
-    AddConfig("Weapon_Range", "攻击距离", "设置你的武器攻击距离，默认范围2点。",
-              Setparameters_a(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 10, 10), 2),
-    AddConfig("Weapon_speed", "移动速度", "携带武器时的移动系数，默认系数1.2。",
-              Setparameters_b(1, 1, 1.2, 1.2, 1.5, 1.5, 2, 2), 1.2),
+    AddConfig("Weapon_Damage", "武器伤害", "设置你的武器伤害，默认50。", SetParameters(
+                  {
+            20,
+            20
+        }, {
+            50,
+            50
+        }, {
+            70,
+            70
+        }, {
+            100,
+            100
+        }, {
+            150,
+            150
+        }, {
+            200,
+            200
+        }), 50),
+    AddConfig("Weapon_Range", "攻击距离", "设置你的武器攻击距离，默认范围2点。", SetParameters(
+                  {
+            1,
+            1
+        }, {
+            2,
+            2
+        }, {
+            3,
+            3
+        }, {
+            4,
+            4
+        }, {
+            5,
+            5
+        }, {
+            10,
+            10
+        }), 2),
+    AddConfig("Weapon_speed", "移动速度", "携带武器时的移动系数，默认系数1.2。", SetParameters(
+                  {
+            1,
+            1
+        }, {
+            1.2,
+            1.2
+        }, {
+            1.5,
+            1.5
+        }, {
+            2,
+            2
+        }), 1.2),
+    AddConfig("Hat_armor", "帽子护甲", "设置你的帽子护甲，默认50%", SetParameters(
+                  {
+            '0%',
+            0
+        }, {
+            '20%',
+            0.2
+        }, {
+            '40%',
+            0.4
+        }, {
+            '60%',
+            0.6
+        }, {
+            '80%',
+            0.8
+        }), 0.2),
     AddConfig("Weapon_light", "武器发光", "武器是否可以发光？", Switch, true),
     Breaker("其他设置"),
     AddConfig("Update_hat_parameters", "帽子耐久", "帽子是无限耐久的吗？", Switch, true),

@@ -6,32 +6,31 @@ GLOBAL.setmetatable(env, {
 
 local Widget = require("widgets/widget")
 
--- prefab 初始化代码
+-- prefab 
 modimport "main/kuijiang_assets.lua"
--- recipes 物品配方
+-- recipes 
 modimport "main/kuijiang_recipes.lua"
--- Any containers setting 所有有关葵酱的物品容器设定
+-- Any containers setting 
 modimport "main/kuijiang_containers.lua"
--- MOD 设置文件/Mod Setting
+-- Mod Setting
 modimport "main/kuijiang_setting.lua"
 
-GLOBAL.PREFAB_SKINS["kuijiang"] = {
-    -- 人物大图显示
+GLOBAL.PREFAB_SKINS["kuijiang"] =
     "kuijiang_none"
 }
 
--- The character select screen lines  --人物选人界面的描述
+-- The character select screen lines  
 STRINGS.CHARACTER_TITLES.kuijiang = "葵酱"
 STRINGS.CHARACTER_NAMES.kuijiang = "葵酱"
 STRINGS.CHARACTER_DESCRIPTIONS.kuijiang = "*简单\n*粗暴\n*漂亮"
 STRINGS.CHARACTER_QUOTES.kuijiang = "我才是最可爱的！"
 
--- Custom speech strings  ----人物语言文件
+-- Custom speech strings  
 STRINGS.CHARACTERS.kuijiang = require "speech_wendy"
 
--- The character's name as appears in-game  --人物在游戏里面的名字
+-- The character's name as appears in-game  
 STRINGS.NAMES.kuijiang = "葵酱"
-STRINGS.SKIN_NAMES.kuijiang_none = "葵酱" -- 检查界面显示的名字
+STRINGS.SKIN_NAMES.kuijiang_none = "葵酱" 
 
 AddModCharacter("kuijiang", "FEMALE")
 

@@ -1,4 +1,3 @@
--- 帽子的耐久设置
 local hat = GetModConfigData("Update_hat_parameters")
 
 local function Update_hat_parameters_a(inst)
