@@ -3,6 +3,14 @@ TUNING.kuijiangWeaponRange = GetModConfigData("Weapon_Range")
 TUNING.kuijiangWeaponSpeed = GetModConfigData("Weapon_speed")
 TUNING.kuijiangBackpackArmor = GetModConfigData("Backpack_armor")
 
+local kuijiang_fridge = GetModConfigData("Backpack_fridge")
+if kuijiang_fridge then
+    local function backpack_fridge(inst)
+        inst.addTag("fridge")
+    end
+    AddPrefabPostInit("kuijiang_armor", backpack_fridge)
+end
+
 local kuijiang_hammer = GetModConfigData("Weapon_hammer")
 if kuijiang_hammer then
     local function weapon_hammer(inst)

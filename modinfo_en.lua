@@ -5,10 +5,10 @@ name = "[DST]葵酱 Balanced"
 author = "boaol"
 
 -- MOD Version
-version = "1.09"
+version = "1.10"
 
 -- MOD Description
-description = ""
+description = "\n Balanced version of Kuijiang"
 
 -- link
 
@@ -111,6 +111,7 @@ configuration_options = {
         option('80%', 0.8)
     }, 0.2),
     Breaker("other_setting"),
+    AddConfig("Backpack_fridge", "backpack as fridge", "Does backpack work as fridge (keep fresh)", Switch, false),
     AddConfig("Weapon_hammer", "hammer", "Can you use it as a hammer?(Not applicable to level-1 weapon)", Switch, false),
     AddConfig("Weapon_shovel", "shovel", "Can you use it as a shovel?(Not applicable to level-1 weapon)", Switch, false),
     AddConfig("Allsharing", "Equipment sharing", "Sets whether other characters can use the kuemei items.", Switch,

@@ -5,10 +5,10 @@ name = "[DST]葵酱 Balanced"
 author = "boaol"
 
 -- MOD Version
-version = "1.09"
+version = "1.10"
 
 -- MOD Description
-description = ""
+description = "\n Balanced version of Kuijiang"
 
 -- link
 
@@ -117,7 +117,10 @@ configuration_options = {
         option('80%', 0.8)
     }, 0.2),
     Breaker("其他设置"),
-    AddConfig("Weapon_hammer", "锤子锤子", "可以当成锤子来使用吗？(不适用于一级武器)", Switch, false),
-    AddConfig("Weapon_shovel", "铲子铲子", "可以当成铲子来使用吗？(不适用于一级武器)", Switch, false),
+    AddConfig("Backpack_fridge", "背包保鲜", "是否为保鲜背包", Switch, false),
+    AddConfig("Weapon_hammer", "锤子锤子", "可以当成锤子来使用吗？(不适用于一级武器)", Switch,
+              false),
+    AddConfig("Weapon_shovel", "铲子铲子", "可以当成铲子来使用吗？(不适用于一级武器)", Switch,
+              false),
     AddConfig("Allsharing", "装备共享", "设置其他角色是否能使用葵酱的道具。", Switch, false)
 }
