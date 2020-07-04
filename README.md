@@ -40,7 +40,7 @@ for all I know here it is: https://steamcommunity.com/sharedfiles/filedetails/?i
   - Add fuelable light, light capacity is five times as minehat
 * Backpack 
   - Add backpack armor, configurable in mod config
-  - remove backpack as fridge
+  - can be config as backpack
 
 ## About Bugs
 
