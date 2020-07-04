@@ -108,161 +108,64 @@ local function onattack_old(weapon, attacker, target)
     end
 end
 
-local function kuijiang_weapon_a()
-    local inst = CreateEntity()
+local function createWeapon(maxUses, mineEffectiveness, chopEffectiveness, atlasname, attackFn)
+    return function()
+        local inst = CreateEntity()
 
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddNetwork()
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddNetwork()
 
-    MakeInventoryPhysics(inst)
+        MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("wuqi")
-    inst.AnimState:SetBuild("wuqi")
-    inst.AnimState:PlayAnimation("idle")
+        inst.AnimState:SetBank("wuqi")
+        inst.AnimState:SetBuild("wuqi")
+        inst.AnimState:PlayAnimation("idle")
 
-    inst:AddTag("sharp")
-    inst:AddTag("pointy")
+        inst:AddTag("sharp")
+        inst:AddTag("pointy")
 
-    inst.entity:SetPristine()
+        inst.entity:SetPristine()
 
-    if not TheWorld.ismastersim then
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
+        inst:AddComponent("weapon")
+        inst.components.weapon:SetDamage(TUNING.kuijiangWeaponDamage)
+        inst.components.weapon:SetRange(TUNING.kuijiangWeaponRange, TUNING.kuijiangWeaponRange)
+        if attackFn then
+            inst.components.weapon:SetOnAttack(attackFn)
+        end
+
+        inst:AddComponent("finiteuses")
+        inst.components.finiteuses:SetMaxUses(maxUses)
+        inst.components.finiteuses:SetUses(maxUses)
+        inst.components.finiteuses:SetOnFinished(inst.Remove)
+
+        inst:AddComponent("tool")
+        inst.components.tool:SetAction(ACTIONS.MINE, mineEffectiveness)
+        inst.components.tool:SetAction(ACTIONS.CHOP, chopEffectiveness)
+
+        inst:AddComponent("inspectable")
+
+        inst:AddComponent("inventoryitem")
+        inst.components.inventoryitem.atlasname = atlasname
+
+        inst:AddComponent("equippable")
+        inst.components.equippable:SetOnEquip(onequip)
+        inst.components.equippable:SetOnUnequip(onunequip)
+        inst.components.equippable.walkspeedmult = TUNING.kuijiangWeaponSpeed
+
+        MakeHauntableLaunch(inst)
+
         return inst
     end
-
-    inst:AddComponent("finiteuses")
-    inst.components.finiteuses:SetMaxUses(180)
-    inst.components.finiteuses:SetUses(180)
-    inst.components.finiteuses:SetOnFinished(inst.Remove)
-
-    inst:AddComponent("weapon")
-    inst.components.weapon:SetDamage(TUNING.kuijiangWeaponDamage)
-    inst.components.weapon:SetRange(TUNING.kuijiangWeaponRange, TUNING.kuijiangWeaponRange)
-
-    inst:AddComponent("tool")
-    inst.components.tool:SetAction(ACTIONS.MINE, 1.8)
-    inst.components.tool:SetAction(ACTIONS.CHOP, 3)
-
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/kuijiang_weapon_a.xml"
-
-    inst:AddComponent("equippable")
-    inst.components.equippable:SetOnEquip(onequip)
-    inst.components.equippable:SetOnUnequip(onunequip)
-    inst.components.equippable.walkspeedmult = TUNING.kuijiangWeaponSpeed
-
-    MakeHauntableLaunch(inst)
-
-    return inst
 end
 
-local function kuijiang_weapon_b()
-    local inst = CreateEntity()
-
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddNetwork()
-
-    MakeInventoryPhysics(inst)
-
-    inst.AnimState:SetBank("wuqi")
-    inst.AnimState:SetBuild("wuqi")
-    inst.AnimState:PlayAnimation("idle")
-
-    inst:AddTag("sharp")
-    inst:AddTag("pointy")
-
-    inst.entity:SetPristine()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    -- inst.components.weapon:SetOnAttack(onattack)
-
-    inst:AddComponent("finiteuses")
-    inst.components.finiteuses:SetMaxUses(230)
-    inst.components.finiteuses:SetUses(230)
-    inst.components.finiteuses:SetOnFinished(inst.Remove)
-
-    inst:AddComponent("tool")
-    inst.components.tool:SetAction(ACTIONS.MINE, 2)
-    inst.components.tool:SetAction(ACTIONS.CHOP, 4)
-
-    inst:AddComponent("weapon")
-    inst.components.weapon:SetDamage(TUNING.kuijiangWeaponDamage)
-    inst.components.weapon:SetRange(TUNING.kuijiangWeaponRange, TUNING.kuijiangWeaponRange)
-    inst.components.weapon:SetOnAttack(onattack_old)
-
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/kuijiang_weapon_b.xml"
-
-    inst:AddComponent("equippable")
-    inst.components.equippable:SetOnEquip(onequip)
-    inst.components.equippable:SetOnUnequip(onunequip)
-    inst.components.equippable.walkspeedmult = TUNING.kuijiangWeaponSpeed
-
-    MakeHauntableLaunch(inst)
-
-    return inst
-end
-
-local function kuijiang_weapon_c()
-    local inst = CreateEntity()
-
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddNetwork()
-
-    MakeInventoryPhysics(inst)
-
-    inst.AnimState:SetBank("wuqi")
-    inst.AnimState:SetBuild("wuqi")
-    inst.AnimState:PlayAnimation("idle")
-
-    inst:AddTag("sharp")
-    inst:AddTag("pointy")
-
-    inst.entity:SetPristine()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    -- inst.components.weapon:SetOnAttack(onattack)
-
-    inst:AddComponent("finiteuses")
-    inst.components.finiteuses:SetMaxUses(300)
-    inst.components.finiteuses:SetUses(300)
-    inst.components.finiteuses:SetOnFinished(inst.Remove)
-
-    inst:AddComponent("tool")
-    inst.components.tool:SetAction(ACTIONS.MINE, 2)
-    inst.components.tool:SetAction(ACTIONS.CHOP, 4)
-
-    inst:AddComponent("weapon")
-    inst.components.weapon:SetDamage(TUNING.kuijiangWeaponDamage)
-    inst.components.weapon:SetRange(TUNING.kuijiangWeaponRange, TUNING.kuijiangWeaponRange)
-    inst.components.weapon:SetOnAttack(onattack)
-
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/kuijiang_weapon_c.xml"
-
-    inst:AddComponent("equippable")
-    inst.components.equippable:SetOnEquip(onequip)
-    inst.components.equippable:SetOnUnequip(onunequip)
-    inst.components.equippable.walkspeedmult = TUNING.kuijiangWeaponSpeed
-
-    MakeHauntableLaunch(inst)
-
-    return inst
-end
-
-return Prefab("kuijiang_weapon_a", kuijiang_weapon_a, assets), Prefab("kuijiang_weapon_b", kuijiang_weapon_b, assets),
-       Prefab("kuijiang_weapon_c", kuijiang_weapon_c, assets)
+return Prefab("kuijiang_weapon_a", createWeapon(180, 1.8, 3, "images/inventoryimages/kuijiang_weapon_a.xml", false),
+              assets),
+       Prefab("kuijiang_weapon_b",
+              createWeapon(230, 2, 4, "images/inventoryimages/kuijiang_weapon_b.xml", onattack_old), assets), Prefab(
+           "kuijiang_weapon_c", createWeapon(300, 2, 4, "images/inventoryimages/kuijiang_weapon_b.xml", onattack),
+           assets)

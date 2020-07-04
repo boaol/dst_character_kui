@@ -69,12 +69,12 @@ end
 
 local Switch = {
     {
-        description = "true",
-        data = true
-    },
-    {
         description = "false",
         data = false
+    },
+    {
+        description = "true",
+        data = true
     }
 }
 
@@ -92,16 +92,14 @@ configuration_options = {
         option(2, 2),
         option(3, 3),
         option(4, 4),
-        option(5, 5),
-        option(10, 10)
+        option(5, 5)
     }, 2),
     AddConfig("Weapon_speed", "Weapon speed", "Movement coefficient while carrying a weapon, default coefficient 1.2.",
               {
         option(1, 1),
         option(1.2, 1.2),
         option(1.5, 1.5),
-        option(2, 2),
-        option(5, 5)
+        option(2, 2)
     }, 1.2),
     AddConfig("Backpack_armor", "Backpack armor", "Set your backpack armor to 20% by default", {
         option('0%', 0),

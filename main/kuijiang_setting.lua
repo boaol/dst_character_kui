@@ -6,7 +6,7 @@ TUNING.kuijiangBackpackArmor = GetModConfigData("Backpack_armor")
 local kuijiang_fridge = GetModConfigData("Backpack_fridge")
 if kuijiang_fridge then
     local function backpack_fridge(inst)
-        inst.addTag("fridge")
+        inst:AddTag("fridge")
     end
     AddPrefabPostInit("kuijiang_armor", backpack_fridge)
 end
@@ -18,7 +18,6 @@ if kuijiang_hammer then
             inst.components.tool:SetAction(ACTIONS.HAMMER)
         end
     end
-    -- AddPrefabPostInit("kuijiang_weapon_a", weapon_hammer)
     AddPrefabPostInit("kuijiang_weapon_b", weapon_hammer)
     AddPrefabPostInit("kuijiang_weapon_c", weapon_hammer)
 end
@@ -30,19 +29,23 @@ if kuijiang_shovel then
             inst.components.tool:SetAction(ACTIONS.DIG)
         end
     end
-    -- AddPrefabPostInit("kuijiang_weapon_a", weapon_shovel)
     AddPrefabPostInit("kuijiang_weapon_b", weapon_shovel)
     AddPrefabPostInit("kuijiang_weapon_c", weapon_shovel)
 end
 
 local kuijiang_shared = GetModConfigData("Allsharing")
+
+local function UpdateShared(inst)
+    inst.kuijiang_Allshared = true
+end
+
 if not kuijiang_shared then
-    local function UpdateShared(inst)
-        inst.kuijiang_Allshared = true
-    end
-    -- AddPrefabPostInit("kuijiang_hat", UpdateShared)
+    AddPrefabPostInit("kuijiang_hat", UpdateShared)
     AddPrefabPostInit("kuijiang_armor", UpdateShared)
     AddPrefabPostInit("kuijiang_weapon_a", UpdateShared)
     AddPrefabPostInit("kuijiang_weapon_b", UpdateShared)
-    -- AddPrefabPostInit("kuijiang_weapon_c", UpdateShared)
+    AddPrefabPostInit("kuijiang_weapon_c", UpdateShared)
+else
+    AddPrefabPostInit("kuijiang_hat", UpdateShared)
+    AddPrefabPostInit("kuijiang_weapon_c", UpdateShared)
 end

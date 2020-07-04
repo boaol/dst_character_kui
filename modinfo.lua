@@ -1,5 +1,5 @@
 -- MOD Name
-name = "[DST]葵酱 Balanced"
+name = "[DST]葵酱 Balanced local"
 
 -- Mod Authors
 author = "boaol"
@@ -76,12 +76,12 @@ end
 
 local Switch = {
     {
-        description = "开启",
-        data = true
-    },
-    {
         description = "关闭",
         data = false
+    },
+    {
+        description = "开启",
+        data = true
     }
 }
 
@@ -99,15 +99,13 @@ configuration_options = {
         option(2, 2),
         option(3, 3),
         option(4, 4),
-        option(5, 5),
-        option(10, 10)
+        option(5, 5)
     }, 2),
     AddConfig("Weapon_speed", "移动速度", "携带武器时的移动系数，默认系数1.2。", {
         option(1, 1),
         option(1.2, 1.2),
         option(1.5, 1.5),
-        option(2, 2),
-        option(5, 5)
+        option(2, 2)
     }, 1.2),
     AddConfig("Backpack_armor", "背包护甲", "设置你的背包护甲，默认20%", {
         option('0%', 0),
