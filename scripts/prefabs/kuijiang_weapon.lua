@@ -167,5 +167,5 @@ return Prefab("kuijiang_weapon_a", createWeapon(180, 1.8, 3, "images/inventoryim
               assets),
        Prefab("kuijiang_weapon_b",
               createWeapon(230, 2, 4, "images/inventoryimages/kuijiang_weapon_b.xml", onattack_old), assets), Prefab(
-           "kuijiang_weapon_c", createWeapon(300, 2, 4, "images/inventoryimages/kuijiang_weapon_b.xml", onattack),
+           "kuijiang_weapon_c", createWeapon(300, 2, 4, "images/inventoryimages/kuijiang_weapon_c.xml", onattack),
            assets)
